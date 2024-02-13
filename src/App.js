@@ -9,12 +9,13 @@ import Cart from "./Cart";
 import {ErrorPage} from "./ErrorPage";
 import {GlobalStyle} from "./GlobalStyle";
 import { ThemeProvider } from "styled-components";
+import Header from "./components/Header";
 
 
 const App = () => {
   const theme = {
     colors: {
-      bg: "#FFA500",
+      bg: "#F6F8FA",
       footer_bg:"#0a1435",
       btn:"rgb(98 84 243)",
       border:"rgba(98,84,243,0.5)",
@@ -33,6 +34,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
     <BrowserRouter>
     <GlobalStyle/>
+    <Header/>
     <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path='/about' element={<About/>}/>
