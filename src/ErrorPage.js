@@ -1,11 +1,7 @@
 import React from 'react'
 
-function ErrorPage() {
+export const ErrorPage = () => {
   return (
-    <div>
-      ERROR 404
-    </div>
+    <div>ErrorPage</div>
   )
 }
-
-export default ErrorPage
