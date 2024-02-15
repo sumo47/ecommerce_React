@@ -167,32 +167,40 @@ const Nav = () => {
 
     return (
         <Nav>
-            <div className={Menu?"Navbar":"Navbar active"}>
+            <div className={Menu?"Navbar active":"Navbar"}>
                 <ul className="navbar-lists">
                     <li>
-                        <NavLink className="navbar-link home-link" to="/"  onClick={()=>setMenu(true)}>Home</NavLink>
+                        <NavLink className="navbar-link home-link" to="/"  onClick={()=>setMenu(false)}>Home</NavLink>
                        
                     </li>
                     <li>
-                        <NavLink className="navbar-link" to="/About" onClick={()=>setMenu(true)}>About</NavLink>
+                        <NavLink className="navbar-link" to="/About" onClick={()=>setMenu(false)}>About</NavLink>
                     </li>
                     <li>
-                        <NavLink className="navbar-link" to="/Products" onClick={()=>setMenu(true)}>Products</NavLink>
+                        <NavLink className="navbar-link" to="/Products" onClick={()=>setMenu(false)}>Products</NavLink>
                     </li>
                     <li>
-                        <NavLink className="navbar-link" to="/Contact" onClick={()=>setMenu(true)}>Contact</NavLink>
+                        <NavLink className="navbar-link" to="/Contact" onClick={()=>setMenu(false)}>Contact</NavLink>
                     </li>
                     <li>
-                        <NavLink className="navbar-link cart-trolley--link" to="/cart" onClick={()=>setMenu(true)}>
+                        <NavLink className="navbar-link cart-trolley--link" to="/cart" onClick={()=>setMenu(false)}>
                             <FiShoppingCart className="cart-trolley" />
                             <span className="cart-total--item">10</span>
                         </NavLink>
                     </li>
                 </ul>
                 <div className="mobile-navbar-btn">
-                    <CgMenu name="menu-outline" className="mobile-nav-icon" 
-                    onClick={()=>{setMenu(false)}}/>
-                    <CgClose name="close-outline" className="mobile-nav-icon close-outline"  onClick={()=>{setMenu(true)}} />
+
+                    <CgMenu 
+                    name="menu-outline" 
+                    className="mobile-nav-icon" 
+                    onClick={()=>{setMenu(true)}}/>
+
+                    <CgClose 
+                    name="close-outline" 
+                    className="mobile-nav-icon close-outline"  
+                    onClick={()=>{setMenu(false)}} />
+
                 </div>
             </div>
         </Nav>

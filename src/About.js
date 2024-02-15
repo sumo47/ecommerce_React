@@ -1,7 +1,11 @@
 import React from 'react'
+import HeroSection from './components/HeroSection'
 
 export const About = () => {
+  const data = {
+    name:"Sumit Ecommerce"
+  }
   return (
-    <div>About</div>
+    <HeroSection myData={data}/>
   )
 }
