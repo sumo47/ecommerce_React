@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { TbTruckDelivery } from "react-icons/tb";
 import { MdSecurity } from "react-icons/md";
 import { GiReceiveMoney } from "react-icons/gi";
+import { RiSecurePaymentFill } from "react-icons/ri";
+
 
 
 
@@ -30,6 +32,12 @@ function Services() {
                 <GiReceiveMoney className="icon"/>
                 <h3>Money-back Guaranteed</h3>
               </div>
+            </div>
+          </div>
+          <div className="services-3">
+            <div>
+              <RiSecurePaymentFill className="icon"/>
+              <h3>Super Secure Payment System</h3>
             </div>
           </div>
         </div>
