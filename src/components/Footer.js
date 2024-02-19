@@ -54,7 +54,7 @@ const Footer = () => {
                                 </div>
                                 <div>
                                     <a
-                                        href="https://www.youtube.com">
+                                        href="https://www.youtube.com/@Sumit_Technical47">
                                         <FaYoutube className="icons" />
                                     </a>
                                 </div>
