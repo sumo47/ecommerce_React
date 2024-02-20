@@ -104,7 +104,7 @@ const Nav = () => {
       }
 
       .active .close-outline {
-        display: inline-block;
+      display: inline-block;
       top: 3%;
       right: 6%;
       }
