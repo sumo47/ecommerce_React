@@ -34,7 +34,6 @@ const Footer = () => {
               <h3>Subscribe to get important updates</h3>
               <form action="#">
                 <input type="email" name="email" placeholder="YOUR E-MAIL" />
-
                 <input type="submit" value="subscribe" />
               </form>
             </div>
