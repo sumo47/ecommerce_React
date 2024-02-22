@@ -23,20 +23,20 @@ function Services() {
           <div className="services-2">
             <div className="services-colum-2">
               <div>
-                <MdSecurity className="icon"/>
+                <MdSecurity className="icon" />
                 <h3>Non-contact Shipping</h3>
               </div>
             </div>
             <div className="services-colum-2">
               <div>
-                <GiReceiveMoney className="icon"/>
+                <GiReceiveMoney className="icon" />
                 <h3>Money-back Guaranteed</h3>
               </div>
             </div>
           </div>
           <div className="services-3">
             <div>
-              <RiSecurePaymentFill className="icon"/>
+              <RiSecurePaymentFill className="icon" />
               <h3>Super Secure Payment System</h3>
             </div>
           </div>

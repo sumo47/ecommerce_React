@@ -4,7 +4,7 @@ import styled from 'styled-components'
 function Trusted() {
   return (
     <Wrapper className='brand-section'>
-       <div className="container">
+      <div className="container">
         <h3>Trusted By 1000+ Companies</h3>
         <div className="brand-section-slider">
           <div className="slide">
