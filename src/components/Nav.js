@@ -174,7 +174,7 @@ const Nav = () => {
 
           </li>
           <li>
-            <NavLink className="navbar-link" to="/About" onClick={() => setMenu(false)}>About</NavLink>
+            <NavLink className="navbar-link" to="/About" onClick={() => setMenu(false)}>About </NavLink>
           </li>
           <li>
             <NavLink className="navbar-link" to="/Products" onClick={() => setMenu(false)}>Products</NavLink>
