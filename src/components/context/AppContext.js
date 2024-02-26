@@ -15,13 +15,14 @@ const about = { name: "Sumit Sah" }
 const AppProvider = ({ children }) => {
 
     const getProduct = async (url) => {
+        dispatch({ type: "SET_LOADING" })
         try {
             const res = await axios.get(url)
             const products = res.data
             // console.log(products)
-            dispatch({ type: MY_API_DATA, payload: products })
+            dispatch({ type: "SET_API_DATA", payload: products })
         } catch (error) {
-            dispatch({ type: API_ERROR })
+            dispatch({ type: "API_ERROR" })
             console.log(error)
         }
     }
