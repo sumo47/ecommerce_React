@@ -32,7 +32,7 @@ const AppProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    return <AppContext.Provider value={{ about, ...state }}>
+    return <AppContext.Provider value={{ about , ...state }}>
         {children}
     </AppContext.Provider>
 }
