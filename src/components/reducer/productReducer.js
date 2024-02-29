@@ -14,7 +14,7 @@ const productReducer = (state, action) => {
                 isError: true
             }
             break;
-        case "SET_API_DATA": //!not understand this case algo.
+        case "SET_API_DATA": //all dispatch data , action can access, in this case , type and payload
             const featureData = action.payload.filter((curElem) => {
                 return curElem.featured === true;
             })
@@ -25,7 +25,19 @@ const productReducer = (state, action) => {
                 featureProducts: featureData
             }
             break;
-
+        case "SET_SINGLE_LOADING":
+            return{
+                ...state,
+                isSingleLoading:true,
+            }
+            break;
+        case "SET_API_DATA":
+            return{
+                ...state,
+                isSingleLoading:true,
+                SingleProduct : action.payload
+            }
+            break;
         default:
             break;
     }
