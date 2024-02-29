@@ -35,7 +35,6 @@ const AppProvider = ({ children }) => {
         try {
             const res = await axios.get(url)
             const product = res.data
-            console.log(product)
             dispatch({type:"SET_SINGLE_PRODUCT", payload:product})
         } catch (error) {
             dispatch({type:"SET_SINGLE_ERROR"})

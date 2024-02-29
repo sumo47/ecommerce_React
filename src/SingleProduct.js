@@ -1,11 +1,22 @@
 import styled from "styled-components";
-import {useParams} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { useGlobalHookAppProvider } from "./components/context/AppContext";
+import { useEffect } from "react";
 
 
-const SingleProduct = () => { 
-  const {id} = useParams()
-  console.log(id)
-  return <Wrapper>SingleProduct</Wrapper>;
+const SingleProduct = () => {
+  const API = "https://api.pujakaitem.com/api/products"
+  const { id } = useParams()
+  const { getSingleProduct, isSingleLoading, SingleProduct } = useGlobalHookAppProvider()
+
+  
+  useEffect(() => {
+    getSingleProduct(`${API}?id=${id}`)
+  }, [])
+  
+  console.log(SingleProduct.name)
+  const {name} = SingleProduct
+  return <Wrapper><h1>{name}</h1></Wrapper>;
 };
 
 const Wrapper = styled.section`
