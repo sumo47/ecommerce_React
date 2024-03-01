@@ -13,14 +13,15 @@ import MyImage from './components/MyImage'
 const SingleProduct = () => {
   const API = "https://api.pujakaitem.com/api/products"
   const { id } = useParams()
-  const { getSingleProduct, isSingleLoading, SingleProduct ,state} = useGlobalHookAppProvider()
+  const { getSingleProduct, isSingleLoading, SingleProduct} = useGlobalHookAppProvider()
 
 
   useEffect(() => {
     getSingleProduct(`${API}?id=${id}`)
+    // eslint-disable-next-line 
   }, [])
 
-  const { id: alias, name, company, price, description, category, stock, stars, reviews, image, } = SingleProduct
+  const {  name, company, price, description, stock,  image, } = SingleProduct
   if (isSingleLoading) {
     return <div className="page_loading">Loading.....</div>;
   }
