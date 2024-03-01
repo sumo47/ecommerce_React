@@ -15,6 +15,7 @@ const initialState = {
 const about = { name: "Sumit Sah" }
 
 const AppProvider = ({ children }) => {
+
     //Get Product
     const getProduct = async (url) => {
         dispatch({ type: "SET_LOADING" })
@@ -42,6 +43,7 @@ const AppProvider = ({ children }) => {
         }
     }
 
+    
 
     useEffect(() => {
         getProduct(API)
