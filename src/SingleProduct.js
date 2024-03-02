@@ -39,6 +39,7 @@ const SingleProduct = () => {
         <div className="product-data">
           <h2>{name}</h2>
           {/* <Star stars={stars} reviews={reviews} /> */}
+          <p>review</p>
 
           <p className="product-data-price">
             MRP:
@@ -63,7 +64,7 @@ const SingleProduct = () => {
 
             <div className="product-warranty-data">
               <TbTruckDelivery className="warranty-icon" />
-              <p>Thapa Delivered </p>
+              <p>Sumit Delivered </p>
             </div>
 
             <div className="product-warranty-data">
