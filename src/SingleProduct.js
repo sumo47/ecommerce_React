@@ -9,12 +9,13 @@ import { MdSecurity } from "react-icons/md";
 import { TbTruckDelivery, TbReplace } from "react-icons/tb";
 import MyImage from './components/MyImage'
 import Star from './components/Star'
+import AddToCart from './components/AddToCart'
 
 
 const SingleProduct = () => {
   const API = "https://api.pujakaitem.com/api/products"
   const { id } = useParams()
-  const { getSingleProduct, isSingleLoading, SingleProduct} = useGlobalHookAppProvider()
+  const { getSingleProduct, isSingleLoading, SingleProduct } = useGlobalHookAppProvider()
   console.log(SingleProduct)
 
 
@@ -23,7 +24,7 @@ const SingleProduct = () => {
     // eslint-disable-next-line 
   }, [])
 
-  const {  name, company, price, description, stock,  image, stars, reviews} = SingleProduct
+  const { name, company, price, description, stock, image, stars, reviews } = SingleProduct
   if (isSingleLoading) {
     return <div className="page_loading">Loading.....</div>;
   }
@@ -85,6 +86,8 @@ const SingleProduct = () => {
               Brand :<span> {company} </span>
             </p>
           </div>
+          <hr />
+          {stock > 0 && <AddToCart product={SingleProduct} />}
         </div>
       </div>
     </Container>
