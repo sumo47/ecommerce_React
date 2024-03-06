@@ -8,12 +8,14 @@ import FormatPrice from './Helpers/FormatPrice'
 import { MdSecurity } from "react-icons/md";
 import { TbTruckDelivery, TbReplace } from "react-icons/tb";
 import MyImage from './components/MyImage'
+import Star from './components/Star'
 
 
 const SingleProduct = () => {
   const API = "https://api.pujakaitem.com/api/products"
   const { id } = useParams()
   const { getSingleProduct, isSingleLoading, SingleProduct} = useGlobalHookAppProvider()
+  console.log(SingleProduct)
 
 
   useEffect(() => {
@@ -21,7 +23,7 @@ const SingleProduct = () => {
     // eslint-disable-next-line 
   }, [])
 
-  const {  name, company, price, description, stock,  image, } = SingleProduct
+  const {  name, company, price, description, stock,  image, stars, reviews} = SingleProduct
   if (isSingleLoading) {
     return <div className="page_loading">Loading.....</div>;
   }
@@ -38,9 +40,7 @@ const SingleProduct = () => {
         {/* product dAta  */}
         <div className="product-data">
           <h2>{name}</h2>
-          {/* <Star stars={stars} reviews={reviews} /> */}
-          <p>review</p>
-
+          <Star stars={stars} reviews={reviews} />
           <p className="product-data-price">
             MRP:
             <del>
