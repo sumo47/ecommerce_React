@@ -52,6 +52,8 @@ const Wrapper = styled.section`
 
   .active {
     opacity: 1;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 
   .checkStyle {
