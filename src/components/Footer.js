@@ -68,7 +68,7 @@ const Footer = () => {
             <hr />
             <div className="container grid grid-two-column ">
               <p>
-                @{new Date().getFullYear()} Sumit Technical. All Rights Reserved
+                @{new Date().getFullYear()} <b>Sumit Technical.</b> All Rights Reserved
               </p>
               <div>
                 <p>PRIVACY POLICY</p>
