@@ -28,7 +28,7 @@ const Footer = () => {
           <div className="container grid grid-four-column">
             <div className="footer-about">
               <h3>Sumit Technical</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, aspernatur!</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, aspernatur !</p>
             </div>
             <div className="footer-subscribe">
               <h3>Subscribe to get important updates</h3>
