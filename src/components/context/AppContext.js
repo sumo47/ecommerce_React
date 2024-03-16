@@ -43,8 +43,6 @@ const AppProvider = ({ children }) => {
         }
     }
 
-    
-
     useEffect(() => {
         getProduct(API)
     }, [])
