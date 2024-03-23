@@ -3,11 +3,8 @@ import styled from 'styled-components'
 import ProductList from './components/ProductList'
 import Sort from './components/Sort'
 import FilterSection from './components/FilterSection'
-import { useGlobalFilterProvider } from './components/context/Filter_Context'
 
 function Products() {
-  const { filter_Products } = useGlobalFilterProvider()
-  console.log("Filter_Product", filter_Products)
   return (
     <Wrapper>
       <div className='container grid grid-filter-column'>
