@@ -7,7 +7,10 @@ const initialState = {
     filter_Products: [],
     all_Products: [],
     grid_view: true,
-    sorting_value: "lowest"
+    sorting_value: "lowest",
+    filters: {
+        text: ""
+    }
 }
 
 export const FilterProvider = ({ children }) => {
@@ -31,15 +34,24 @@ export const FilterProvider = ({ children }) => {
     // used again useEffect,  because when i will click on sort dropdown than products will refresh
     useEffect(() => {
         // console.log("HI")
+        dispatch({ type: "FILTER_PRODUCTS" })
         dispatch({ type: "SORT_PRODUCT" })
-    }, [state.sorting_value, products])
+    }, [state.sorting_value, products, state.filters])
+
+    //filter product
+    const updateFilterValue = (event) => {
+        let value = event.target.value;
+        let name = event.target.name
+        dispatch({ type: "UPDATE_FILTER_VALUE", payload: { name, value } })
+    }
 
     //to load products in the beginning
     useEffect(() => {
+      
         dispatch({ type: "LOAD_FILTER_PRODUCT", payload: products })
     }, [products])
 
-    return <FilterContext.Provider value={{ ...state, setGridView, setListView, sorting }}>
+    return <FilterContext.Provider value={{ ...state, setGridView, setListView, sorting, updateFilterValue }}>
         {children}
     </FilterContext.Provider >
 }

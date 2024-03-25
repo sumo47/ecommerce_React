@@ -27,7 +27,7 @@ const filterReducer = (state, action) => {
             let newSortedProducts;
             let tempProducts = [...state.filter_Products]
 
-            const sortingFunction = (a, b) => {
+            let sortingFunction = (a, b) => {
                 if (state.sorting_value === 'lowest') return a.price - b.price
                 if (state.sorting_value === 'highest') return b.price - a.price
                 if (state.sorting_value === "a-z") return a.name.localeCompare(b.name)
@@ -39,6 +39,28 @@ const filterReducer = (state, action) => {
             return {
                 ...state,
                 filter_Products: newSortedProducts
+            }
+        case "UPDATE_FILTER_VALUE":
+            let { name, value } = action.payload
+            return {
+                ...state,
+                filters: {
+                    ...state.filters,
+                    [name]: value //! did not understand
+                }
+            }
+        case "FILTER_PRODUCTS":
+            let { all_Products } = state
+            let tempFilterProducts = [...all_Products];
+            const { text } = state.filters
+
+            if (text) {
+                tempFilterProducts = tempFilterProducts.filter(product => product.name.toLowerCase().includes(text.toLowerCase()))
+            }
+
+            return {
+                ...state,
+                filter_Products: tempFilterProducts
             }
 
         default:
