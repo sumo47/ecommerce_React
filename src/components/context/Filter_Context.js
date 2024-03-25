@@ -31,9 +31,10 @@ export const FilterProvider = ({ children }) => {
     // used again useEffect,  because when i will click on sort dropdown than products will refresh
     useEffect(() => {
         // console.log("HI")
-        dispatch({type: "SORT_PRODUCT", payload: products})
+        dispatch({ type: "SORT_PRODUCT" })
     }, [state.sorting_value, products])
 
+    //to load products in the beginning
     useEffect(() => {
         dispatch({ type: "LOAD_FILTER_PRODUCT", payload: products })
     }, [products])
