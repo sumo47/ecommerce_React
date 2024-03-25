@@ -4,10 +4,25 @@ import { useGlobalFilterProvider } from './context/Filter_Context'
 
 
 function FilterSection() {
-  const { filters: { text }, updateFilterValue } = useGlobalFilterProvider()
+  const { filters: { text }, updateFilterValue, all_Products } = useGlobalFilterProvider()
+
+  //To get unique data for all products
+  const getUniqueData = (data, property) => {
+    let newVal = data.map((curElem) => {
+      return curElem[property]
+    })
+
+    return newVal = ["all", ...new Set(newVal)]
+
+  }
+
+  //For category
+  const categoryDataOnly = getUniqueData(all_Products, "category")
+  const companyDataOnly = getUniqueData(all_Products, "company")
+  console.log(companyDataOnly)
   return (
     <Wrapper>
-   <div className="filter-search">
+      <div className="filter-search">
         <form onSubmit={(e) => e.preventDefault()}>
           <input
             type="text"
@@ -16,6 +31,41 @@ function FilterSection() {
             value={text}
             onChange={updateFilterValue}
           />
+        </form>
+      </div>
+
+      <div className="filter-category">
+        <h3>category</h3>
+        <div>
+          {categoryDataOnly.map((curElem, index) => {
+            return (
+              <button
+                key={index}
+                type='button'
+                name='category'
+                value={curElem}
+                onClick={updateFilterValue}
+              >
+                {curElem}
+              </button>
+            )
+          })}
+        </div>
+      </div>
+      <div className="filter-company">
+        <h3>company</h3>
+        <form action="#">
+          <select name="company" id="company" onClick={updateFilterValue}>
+            {
+              companyDataOnly.map((curElem, index) => {
+                return (
+                  <option key={index} value={curElem}>
+                    {curElem}
+                  </option>
+                )
+              })
+            }
+          </select>
         </form>
       </div>
     </Wrapper>
