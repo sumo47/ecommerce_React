@@ -1,10 +1,12 @@
 import React from 'react'
 import styled from "styled-components"
 import { useGlobalFilterProvider } from './context/Filter_Context'
+import { FaCheck } from "react-icons/fa";
+
 
 
 function FilterSection() {
-  const { filters: { text }, updateFilterValue, all_Products } = useGlobalFilterProvider()
+  const { filters: { text, colors }, updateFilterValue, all_Products } = useGlobalFilterProvider()
 
   //To get unique data for all products
   const getUniqueData = (data, property) => {
@@ -12,14 +14,21 @@ function FilterSection() {
       return curElem[property]
     })
 
-    return newVal = ["all", ...new Set(newVal)]
+    if (property === "colors") {
+      // return (newVal = ["all", ...new Set([].concat(...newVal))]);
+      return newVal = ['all', ...new Set(newVal.flat())];
+    }
+    else {
+      return (newVal = ["all", ...new Set(newVal)])
+    }
 
   }
 
   //For category
   const categoryDataOnly = getUniqueData(all_Products, "category")
   const companyDataOnly = getUniqueData(all_Products, "company")
-  console.log(companyDataOnly)
+  const colorsDataOnly = getUniqueData(all_Products, "colors")
+  console.log(colorsDataOnly)
   return (
     <Wrapper>
       <div className="filter-search">
@@ -67,6 +76,25 @@ function FilterSection() {
             }
           </select>
         </form>
+      </div>
+      <div className="filter-colors colors">
+        {
+          colorsDataOnly.map((curElem, index) => {
+            if (curElem === "all") {
+              return (
+                <button className='color-all--style' key={index} name='colors' value={curElem} type='button' onClick={updateFilterValue}>
+                  All
+                </button>
+              )
+            } else {
+              return (
+                <button className={colors === curElem ? "btnStyle active" : "btnStyle"} key={index} name='colors' value={curElem} type='button' style={{ backgroundColor: curElem }} onClick={updateFilterValue}>
+                  {colors === curElem ? <FaCheck className="checkStyle" /> : null}
+                </button>
+              )
+            }
+          })
+        }
       </div>
     </Wrapper>
   )
@@ -151,6 +179,8 @@ const Wrapper = styled.section`
 
   .active {
     opacity: 1;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 
   .checkStyle {
