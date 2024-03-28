@@ -38,7 +38,7 @@ const Footer = () => {
               </form>
             </div>
             <div className="footer-social">
-              <h3>Follow Us</h3>
+              <h3>Follow Us guys</h3>
               <div className="footer-social--icons">
                 <div>
                   <a href="https://www.discord.com">
