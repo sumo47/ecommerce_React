@@ -2,6 +2,9 @@
 const filterReducer = (state, action) => {
     switch (action.type) {
         case "LOAD_FILTER_PRODUCT":
+            let priceArr = action.payload.map((product) => {return  product.price })
+            console.log(priceArr)
+            console.log(Math.max(...priceArr))
             return {
                 ...state,
                 filter_Products: [...action.payload],
@@ -57,13 +60,13 @@ const filterReducer = (state, action) => {
             if (text) {
                 tempFilterProducts = tempFilterProducts.filter(product => product.name.toLowerCase().includes(text.toLowerCase()))
             }
-            if(category !== "all"){
+            if (category !== "all") {
                 tempFilterProducts = tempFilterProducts.filter(product => product.category.toLowerCase() === category.toLowerCase());
             }
-            if(company !== "all"){
+            if (company !== "all") {
                 tempFilterProducts = tempFilterProducts.filter(product => product.company.toLowerCase() === company.toLowerCase());
             }
-            if(colors !== "all"){
+            if (colors !== "all") {
                 tempFilterProducts = tempFilterProducts.filter(product => product.colors.includes(colors));
             }
 
