@@ -96,6 +96,7 @@ function FilterSection() {
           })
         }
       </div>
+      <div className="filter-color-style"></div>
     </Wrapper>
   )
 }
