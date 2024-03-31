@@ -50,6 +50,11 @@ export const FilterProvider = ({ children }) => {
         let name = event.target.name
         dispatch({ type: "UPDATE_FILTER_VALUE", payload: { name, value } })
     }
+    //to clear filter value
+    const clearFilterValue = (event) => {
+
+        dispatch({ type: "CLEAR_FILTER_VALUE" })
+    }
 
     //to load products in the beginning
     useEffect(() => {
@@ -57,7 +62,7 @@ export const FilterProvider = ({ children }) => {
         dispatch({ type: "LOAD_FILTER_PRODUCT", payload: products })
     }, [products])
 
-    return <FilterContext.Provider value={{ ...state, setGridView, setListView, sorting, updateFilterValue }}>
+    return <FilterContext.Provider value={{ ...state, setGridView, setListView, sorting, updateFilterValue,clearFilterValue }}>
         {children}
     </FilterContext.Provider >
 }

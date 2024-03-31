@@ -3,12 +3,13 @@ import styled from "styled-components"
 import { useGlobalFilterProvider } from './context/Filter_Context'
 import { FaCheck } from "react-icons/fa";
 import FormatPrice from '../Helpers/FormatPrice'
+import { Button } from '../styles/Button';
 
 
 
 function FilterSection() {
-  const { filters: { text, colors, price, maxPrice, minPrice }, updateFilterValue, all_Products } = useGlobalFilterProvider()
-
+  const { filters: { text, colors, price, maxPrice, minPrice }, updateFilterValue, all_Products,clearFilterValue } = useGlobalFilterProvider()
+  console.log(maxPrice, minPrice, price)
   //To get unique data for all products
   const getUniqueData = (data, property) => {
     let newVal = data.map((curElem) => {
@@ -104,6 +105,11 @@ function FilterSection() {
         <h3>Price</h3>
         <p><FormatPrice price={price} /></p>
         <input type="range" name='price' step="10000" min={minPrice} max={maxPrice} value={price} onChange={updateFilterValue} />
+      </div>
+      <div className="filter-clear">
+        <Button className='btn' onClick={clearFilterValue}>
+          Clear filters
+        </Button>
       </div>
     </Wrapper>
   )
