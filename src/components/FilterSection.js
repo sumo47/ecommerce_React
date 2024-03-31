@@ -64,13 +64,13 @@ function FilterSection() {
         </div>
       </div>
       <div className="filter-company">
-        <h3>company</h3>
+        <h3>Company</h3>
         <form action="#">
-          <select name="company" id="company" onClick={updateFilterValue}>
+          <select name="company" className='filter-company--select' id="company" onClick={updateFilterValue}>
             {
               companyDataOnly.map((curElem, index) => {
                 return (
-                  <option key={index} value={curElem}>
+                  <option key={index} value={curElem} name="company">
                     {curElem}
                   </option>
                 )
