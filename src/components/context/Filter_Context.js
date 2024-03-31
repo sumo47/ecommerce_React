@@ -10,9 +10,12 @@ const initialState = {
     sorting_value: "lowest",
     filters: {
         text: "",
-        category:"all",
-        company:"all",
-        colors:"all"
+        category: "all",
+        company: "all",
+        colors: "all",
+        maxPrice: 0,
+        minPrice: 0,
+        price: 0
     }
 }
 
@@ -50,7 +53,7 @@ export const FilterProvider = ({ children }) => {
 
     //to load products in the beginning
     useEffect(() => {
-      
+
         dispatch({ type: "LOAD_FILTER_PRODUCT", payload: products })
     }, [products])
 

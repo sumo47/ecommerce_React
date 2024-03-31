@@ -1,14 +1,17 @@
 
 const filterReducer = (state, action) => {
     switch (action.type) {
+
         case "LOAD_FILTER_PRODUCT":
-            let priceArr = action.payload.map((product) => {return  product.price })
-            console.log(priceArr)
-            console.log(Math.max(...priceArr))
+
+            let priceArr = action.payload.map((product) => { return product.price })
+            let maxPrice = Math.max(...priceArr)
+
             return {
                 ...state,
                 filter_Products: [...action.payload],
-                all_Products: [...action.payload]
+                all_Products: [...action.payload],
+                filters: { ...state.filters, maxPrice, price: maxPrice }
             }
         case "SET_GRIDVIEW":
             return {
@@ -55,7 +58,7 @@ const filterReducer = (state, action) => {
         case "FILTER_PRODUCTS":
             let { all_Products } = state
             let tempFilterProducts = [...all_Products];
-            const { text, category, company, colors } = state.filters
+            const { text, category, company, colors, price } = state.filters
 
             if (text) {
                 tempFilterProducts = tempFilterProducts.filter(product => product.name.toLowerCase().includes(text.toLowerCase()))
@@ -68,6 +71,9 @@ const filterReducer = (state, action) => {
             }
             if (colors !== "all") {
                 tempFilterProducts = tempFilterProducts.filter(product => product.colors.includes(colors));
+            }
+            if (price) {
+                tempFilterProducts = tempFilterProducts.filter(product => product.price <= price)
             }
 
             return {
