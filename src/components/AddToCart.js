@@ -4,10 +4,14 @@ import { FaCheck } from "react-icons/fa";
 import CartAmountToggle from "./CartAmountToggle"
 import { NavLink } from 'react-router-dom'
 import { Button } from '../styles/Button';
+import {  useGlobalCartProvider } from '../components/context/cartContext'
 
 
 function AddToCart({ product }) {
-  const {  colors, stock } = product
+
+  const {addToCart} = useGlobalCartProvider()
+
+  const { colors, stock, id } = product
   const [color, setColor] = useState(colors[0])
   const [amount, setAmount] = useState(1)
 
@@ -37,10 +41,8 @@ function AddToCart({ product }) {
       {/* add to cart */}
 
       <CartAmountToggle amount={amount} setIncrease={setIncrease} setDecrease={setDecrease} />
-      <NavLink to="/cart">
-        <Button>
-          Add to cart
-        </Button>
+      <NavLink to="/cart" onClick={() => addToCart(id, color, amount, product)}>
+        <Button>Add to cart</Button>
       </NavLink>
     </Wrapper>
   )
