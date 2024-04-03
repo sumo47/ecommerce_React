@@ -9,7 +9,7 @@ import { Button } from '../styles/Button';
 
 function FilterSection() {
   const { filters: { text, colors, price, maxPrice, minPrice }, updateFilterValue, all_Products,clearFilterValue } = useGlobalFilterProvider()
-  console.log(maxPrice, minPrice, price)
+  // console.log(maxPrice, minPrice, price)
   //To get unique data for all products
   const getUniqueData = (data, property) => {
     let newVal = data.map((curElem) => {

@@ -1,9 +1,23 @@
 
 function cartReducer(state, action) {
   if (action.type === 'ADD_TO_CART') {
-    let { cart_Items } = state
-    cart_Items = [...state.cart_Items, action.payload]
-    console.log(cart_Items)
+    let { id, color, amount, product } = action.payload
+
+    let Add_Items = {
+      id: id + color,
+      name: product.name,
+      color,
+      amount,
+      image: product.image[0].url,
+      price: product.price,
+      max: product.stock
+
+    }
+    // state.cart_Items.push(Add_Items)
+    return {
+      ...state
+      , cart_Items: [...state.cart_Items, Add_Items]
+    };
 
   }
   return state;
