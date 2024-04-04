@@ -16,7 +16,7 @@ const SingleProduct = () => {
   const API = "https://api.pujakaitem.com/api/products"
   const { id } = useParams()
   const { getSingleProduct, isSingleLoading, SingleProduct } = useGlobalHookAppProvider()
-  console.log(SingleProduct)
+  // console.log(SingleProduct)
 
 
   useEffect(() => {

@@ -1,9 +1,17 @@
 import React from 'react'
 import CartAmountToggle from './CartAmountToggle'
 import FormatPrice from '../Helpers/FormatPrice'
-import {FaTrash} from 'react-icons/fa'
+import { FaTrash } from 'react-icons/fa'
+import { useGlobalCartProvider } from './context/cartContext'
 
 function CartItem({ id, name, image, color, price, amount }) {
+
+    //! when i using removeItem function direct in trash icon , it is automatically invoking again and again
+    const { removeItem } = useGlobalCartProvider()
+    const remove = (id) => () => {
+        console.log("removing item - " + id)
+        removeItem(id)
+    }
 
     // const [amount, setAmount] = useState(1)
     const setIncrease = () => {
@@ -39,13 +47,15 @@ function CartItem({ id, name, image, color, price, amount }) {
             </div>
             {/*Subtotal */}
 
-        <div className="cart-hide">
-            <p>
-                <FormatPrice price={price * amount} />
-            </p>
-        </div>
-                    {/*remove */}
-                    <p><FaTrash className='remove_icon'/></p>
+            <div className="cart-hide">
+                <p>
+                    <FormatPrice price={price * amount} />
+                </p>
+            </div>
+            {/*remove */}
+            <div>   
+                <p><FaTrash className='remove_icon'  onClick={remove(id)}/></p>
+            </div>
 
         </div>
     )

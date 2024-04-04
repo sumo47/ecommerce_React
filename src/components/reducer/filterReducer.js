@@ -81,7 +81,7 @@ const filterReducer = (state, action) => {
                 filter_Products: tempFilterProducts
             }
         case "CLEAR_FILTER_VALUE":
-            console.log(state)
+            // console.log(state)
             return {
                 ...state,
 

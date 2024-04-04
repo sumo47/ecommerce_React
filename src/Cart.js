@@ -5,7 +5,7 @@ import CartItem from './components/CartItem'
 
 function Cart() {
   const { cart_Items } = useGlobalCartProvider()
-  console.log(cart_Items)
+  // console.log(cart_Items)
   return (
     <Wrapper>
       <div className="container">
