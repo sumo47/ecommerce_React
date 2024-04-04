@@ -1,6 +1,7 @@
 import React from 'react'
 import { useGlobalCartProvider } from './components/context/cartContext'
 import styled from 'styled-components'
+import CartItem from './components/CartItem'
 
 function Cart() {
   const { cart_Items } = useGlobalCartProvider()
@@ -9,13 +10,16 @@ function Cart() {
     <Wrapper>
       <div className="container">
         <div className="cart_heading grid grid-five-column">
-          <p>Item</p>
-          <p className="cart-hide">Price</p>
-          <p>Quantity</p>
-          <p className="cart-hide">Subtotal</p>
-          <p>Remove</p>
+          <p>ITEM</p>
+          <p className="cart-hide">PRICE</p>
+          <p>QUANTITY</p>
+          <p className="cart-hide">SUBTOTAL</p>
+          <p>REMOVE</p>
         </div>
         <hr />
+        <div className="cart-item">
+          {cart_Items.map((cart_Item) => { return <CartItem key={cart_Item.id} {...cart_Item} /> })}
+        </div>
       </div>
     </Wrapper>
   )
