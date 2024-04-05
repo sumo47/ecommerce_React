@@ -30,6 +30,11 @@ function cartReducer(state, action) {
         , cart_Items: updatedCartItem
 
       }
+      case "CLEAR_CART":
+        return {
+         ...state
+          , cart_Items: []
+        }
     default:
       return state;
   }

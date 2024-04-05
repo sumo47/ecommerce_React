@@ -7,7 +7,7 @@ const localStorageCartItem = () => {
     let cart_Items = JSON.parse(localStorage.getItem("cart_items"))
     if (cart_Items === null) {
         cart_Items = []
-        
+
     }
     return cart_Items
 }
@@ -34,8 +34,26 @@ const CartProvider = ({ children }) => {
         localStorage.setItem("cart_items", JSON.stringify(state.cart_Items))
     }, [state.cart_Items])
 
+    const clearCart = () => {
+      
+        dispatch({ type: "CLEAR_CART" })
+        
+    }
 
-    return <cartContext.Provider value={{ ...state, addToCart, removeItem }}>{children}</cartContext.Provider>
+    // calculate the total price and item count of each products in the cart
+    // useEffect(()=>{
+    //     let tempTotalAmount = 0;
+    //     let tempTotalItem = 0;
+    //     for (let i=0;i<state.cart_Items.length;i++) {
+    //         tempTotalAmount += state.cart_Items[i].amount * state.cart_Items[i].product.price
+    //         tempTotalItem += state.cart_Items[i].amount
+    //     }
+    //     dispatch({type:'TOTAL_AMOUNT',payload:{totalAmount :tempTotalAmount}})
+    //     dispatch({type:'TOTAL_ITEM',payload:{totalItem :tempTotalItem}})
+    // },[state.cart_Items])
+
+
+    return <cartContext.Provider value={{ ...state, addToCart, removeItem, clearCart }}>{children}</cartContext.Provider>
 }
 
 

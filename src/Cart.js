@@ -2,9 +2,12 @@ import React from 'react'
 import { useGlobalCartProvider } from './components/context/cartContext'
 import styled from 'styled-components'
 import CartItem from './components/CartItem'
+import { NavLink } from "react-router-dom";
+import {Button} from './styles/Button'
+
 
 function Cart() {
-  const { cart_Items } = useGlobalCartProvider()
+  const { cart_Items, clearCart } = useGlobalCartProvider()
   // console.log(cart_Items)
   return (
     <Wrapper>
@@ -19,6 +22,13 @@ function Cart() {
         <hr />
         <div className="cart-item">
           {cart_Items.map((cart_Item) => { return <CartItem key={cart_Item.id} {...cart_Item} /> })}
+        </div>
+        <hr />
+        <div className="cart-two-button">
+        <NavLink to="/Products">
+          <Button>Continue Shopping</Button>
+        </NavLink>
+        <Button className='btn-clear' onClick={()=>{clearCart()}}>Clear Cart</Button>
         </div>
       </div>
     </Wrapper>
