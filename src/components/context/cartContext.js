@@ -7,7 +7,6 @@ const localStorageCartItem = () => {
     let cart_Items = JSON.parse(localStorage.getItem("cart_items"))
     if (cart_Items === null) {
         cart_Items = []
-
     }
     return cart_Items
 }
@@ -35,9 +34,7 @@ const CartProvider = ({ children }) => {
     }, [state.cart_Items])
 
     const clearCart = () => {
-      
         dispatch({ type: "CLEAR_CART" })
-        
     }
 
     // calculate the total price and item count of each products in the cart
@@ -55,7 +52,6 @@ const CartProvider = ({ children }) => {
 
     return <cartContext.Provider value={{ ...state, addToCart, removeItem, clearCart }}>{children}</cartContext.Provider>
 }
-
 
 const useGlobalCartProvider = () => {
     return useContext(cartContext)
