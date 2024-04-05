@@ -6,12 +6,14 @@ import { useGlobalCartProvider } from './context/cartContext'
 
 function CartItem({ id, name, image, color, price, amount }) {
 
-    //! when i using removeItem function direct in trash icon , it is automatically invoking again and again
+    // when i using removeItem function direct in trash icon , it is automatically invoking again and again 
+    //  because of i was providing removeItem function directly in trash icon onClick function
+    
     const { removeItem } = useGlobalCartProvider()
-    const remove = (id) => () => {
-        console.log("removing item - " + id)
-        removeItem(id)
-    }
+    // const remove = (id) => () => {
+    //     console.log("removing item - " + id)
+    //     removeItem(id)
+    // }
 
     // const [amount, setAmount] = useState(1)
     const setIncrease = () => {
@@ -54,7 +56,7 @@ function CartItem({ id, name, image, color, price, amount }) {
             </div>
             {/*remove */}
             <div>   
-                <p><FaTrash className='remove_icon'  onClick={remove(id)}/></p>
+                <p><FaTrash className='remove_icon'  onClick={()=>{removeItem(id)}}/></p>
             </div>
 
         </div>

@@ -25,17 +25,17 @@ function Cart() {
   )
 }
 
-const EmptyDiv = styled.div`
-  display: grid;
-  place-items: center;
-  height: 50vh;
+// const EmptyDiv = styled.div`
+//   display: grid;
+//   place-items: center;
+//   height: 50vh;
 
-  h3 {
-    font-size: 4.2rem;
-    text-transform: capitalize;
-    font-weight: 300;
-  }
-`;
+//   h3 {
+//     font-size: 4.2rem;
+//     text-transform: capitalize;
+//     font-weight: 300;
+//   }
+// `;
 
 const Wrapper = styled.section`
   padding: 9rem 0;
