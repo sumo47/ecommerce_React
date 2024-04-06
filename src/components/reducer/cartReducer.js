@@ -86,6 +86,7 @@ function cartReducer(state, action) {
           }
         })
       }
+      
     case "DECREASE_ITEM_IN_CART":
       return {
         ...state
@@ -108,6 +109,16 @@ function cartReducer(state, action) {
           }
         })
       }
+
+    case "TOTAL_CART_ITEM":
+      let updatedCartIconItem = state.cart_Items.reduce((initialValue, item) => {
+        return initialValue + item.amount
+      }, 0)
+      return {
+        ...state,
+        total_Item: updatedCartIconItem
+      }
+
     default:
       return state;
   }

@@ -3,11 +3,13 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { FiShoppingCart } from 'react-icons/fi'
 import { CgClose, CgMenu } from "react-icons/cg";
+import { useGlobalCartProvider } from "./context/cartContext";
 
 const Nav = () => {
 
   const [Menu, setMenu] = useState();
-
+  const {total_Item} = useGlobalCartProvider()
+ 
   const Nav = styled.nav`
     .navbar-lists {
       display: flex;
@@ -185,7 +187,7 @@ const Nav = () => {
           <li>
             <NavLink className="navbar-link cart-trolley--link" to="/cart" onClick={() => setMenu(false)}>
               <FiShoppingCart className="cart-trolley" />
-              <span className="cart-total--item">10</span>
+              <span className="cart-total--item">{total_Item}</span>
             </NavLink>
           </li>
         </ul>
