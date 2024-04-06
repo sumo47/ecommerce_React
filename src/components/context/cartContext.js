@@ -25,6 +25,16 @@ const CartProvider = ({ children }) => {
     const addToCart = (id, color, amount, product) => {
         dispatch({ type: "ADD_TO_CART", payload: { id, color, amount, product } })
     }
+    // remove item in the cart when user click on it
+    const increaseItemInCart = (id) => {
+        dispatch({ type: "INCREASE_ITEM_IN_CART", payload: { id } })
+    }
+    // remove item in the cart when user click on it
+    const decreaseItemInCart = (id) => {
+        dispatch({ type: "DECREASE_ITEM_IN_CART", payload: { id } })
+    }
+
+    // Remove Item From Cart
     const removeItem = (id) => {
         dispatch({ type: "REMOVE_FROM_CART", payload: { id } })
         console.log("function")
@@ -50,7 +60,7 @@ const CartProvider = ({ children }) => {
     // },[state.cart_Items])
 
 
-    return <cartContext.Provider value={{ ...state, addToCart, removeItem, clearCart }}>{children}</cartContext.Provider>
+    return <cartContext.Provider value={{ ...state, addToCart, removeItem, clearCart, increaseItemInCart, decreaseItemInCart }}>{children}</cartContext.Provider>
 }
 
 const useGlobalCartProvider = () => {

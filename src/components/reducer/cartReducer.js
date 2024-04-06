@@ -65,6 +65,49 @@ function cartReducer(state, action) {
         ...state
         , cart_Items: []
       }
+    case "INCREASE_ITEM_IN_CART":
+      return {
+        ...state
+        , cart_Items: state.cart_Items.map((item) => {
+          if (item.id === action.payload.id) {
+            if (item.amount >= item.max) {
+              return {
+                ...item,
+                amount: item.max,
+
+              }
+            }
+            return {
+              ...item,
+              amount: item.amount + 1
+            }
+          } else {
+            return item
+          }
+        })
+      }
+    case "DECREASE_ITEM_IN_CART":
+      return {
+        ...state
+        , cart_Items: state.cart_Items.map((item) => {
+          if (item.id === action.payload.id) {
+
+            if (item.amount <= 1) {
+              return {
+                ...item,
+                amount: 1
+              }
+            } else {
+              return {
+                ...item,
+                amount: item.amount - 1,
+              }
+            }
+          } else {
+            return item
+          }
+        })
+      }
     default:
       return state;
   }

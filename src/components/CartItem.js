@@ -8,20 +8,20 @@ function CartItem({ id, name, image, color, price, amount }) {
 
     // when i using removeItem function direct in trash icon , it is automatically invoking again and again 
     //  because of i was providing removeItem function directly in trash icon onClick function
-    
-    const { removeItem } = useGlobalCartProvider()
+
+    const { removeItem, decreaseItemInCart, increaseItemInCart } = useGlobalCartProvider()
     // const remove = (id) => () => {
     //     console.log("removing item - " + id)
     //     removeItem(id)
     // }
 
     // const [amount, setAmount] = useState(1)
-    const setIncrease = () => {
-        // amount < stock ? setAmount(amount + 1) : setAmount(stock)
-    }
-    const setDecrease = () => {
-        // amount > 1 ? setAmount(amount - 1) : setAmount(1)
-    }
+    // const setIncrease = () => {
+    //     // amount < stock ? setAmount(amount + 1) : setAmount(stock)
+    // }
+    // const setDecrease = () => {
+    //     // amount > 1 ? setAmount(amount - 1) : setAmount(1)
+    // }
     return (
         <div className='cart_heading grid grid-five-column'>
             <div className="cart-image--name">
@@ -45,7 +45,7 @@ function CartItem({ id, name, image, color, price, amount }) {
                 </p>
             </div>
             <div>
-                <CartAmountToggle amount={amount} setIncrease={setIncrease} setDecrease={setDecrease} />
+                <CartAmountToggle amount={amount} setIncrease={() => increaseItemInCart(id)} setDecrease={() => decreaseItemInCart(id)} />
             </div>
             {/*Subtotal */}
 
@@ -55,8 +55,8 @@ function CartItem({ id, name, image, color, price, amount }) {
                 </p>
             </div>
             {/*remove */}
-            <div>   
-                <p><FaTrash className='remove_icon'  onClick={()=>{removeItem(id)}}/></p>
+            <div>
+                <p><FaTrash className='remove_icon' onClick={() => { removeItem(id) }} /></p>
             </div>
 
         </div>
