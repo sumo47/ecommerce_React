@@ -11,7 +11,7 @@ function HeroSection({ myData }) {
             <p className='into-data'>Welcome to</p>
             <h1>{name}</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem obcaecati reprehenderit officia reiciendis optio! Repellat sit maxime, labore officiis ducimus modi minus vel laborum ipsum, deserunt dicta molestiae obcaecati ea?</p>
-            <NavLink>
+            <NavLink to="/products">
               <Button>
                 Shop now
               </Button>
