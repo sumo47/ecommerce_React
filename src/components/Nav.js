@@ -4,12 +4,16 @@ import styled from "styled-components";
 import { FiShoppingCart } from 'react-icons/fi'
 import { CgClose, CgMenu } from "react-icons/cg";
 import { useGlobalCartProvider } from "./context/cartContext";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Button } from "../styles/Button";
+
 
 const Nav = () => {
+  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
 
   const [Menu, setMenu] = useState();
-  const {total_Item} = useGlobalCartProvider()
- 
+  const { total_Item } = useGlobalCartProvider()
+
   const Nav = styled.nav`
     .navbar-lists {
       display: flex;
@@ -184,6 +188,18 @@ const Nav = () => {
           <li>
             <NavLink className="navbar-link" to="/Contact" onClick={() => setMenu(false)}>Contact</NavLink>
           </li>
+          {isAuthenticated && <h3>{user.name}</h3>}
+
+          {isAuthenticated ? (
+            <li>
+              <Button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>Log Out</Button></li>
+          ) : (
+            <li>
+              <Button onClick={() => loginWithRedirect()}>Log In</Button>;
+            </li>
+          )}
+
+
           <li>
             <NavLink className="navbar-link cart-trolley--link" to="/cart" onClick={() => setMenu(false)}>
               <FiShoppingCart className="cart-trolley" />

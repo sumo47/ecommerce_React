@@ -110,25 +110,36 @@ function cartReducer(state, action) {
         })
       }
 
-    case "TOTAL_CART_ITEM":
-      let updatedCartIconItem = state.cart_Items.reduce((initialValue, item) => {
-        return initialValue + item.amount
-      }, 0)
+    // case "TOTAL_CART_ITEM":
+    //   let updatedCartIconItem = state.cart_Items.reduce((initialValue, item) => {
+    //     return initialValue + item.amount
+    //   }, 0)
+    //   return {
+    //     ...state,
+    //     total_Item: updatedCartIconItem
+    //   }
+
+    // case "TOTAL_CART_PRICE":
+    //   let total_Price = state.cart_Items.reduce((total, nextItem) => {
+    //     return total + nextItem.price * nextItem.amount;
+    //   }, 0);
+
+    //   return {
+    //     ...state,
+    //     total_Price
+    //   }
+    case "CART_TOTAL_PRICE_ITEM":
+      let { total_Price, total_Item } = state.cart_Items.reduce((initialValue, item) => {
+        return {
+          total_Price: initialValue.total_Price + item.price * item.amount,
+          total_Item: initialValue.total_Item + item.amount
+        }
+      }, { total_Item: 0, total_Price: 0 })
       return {
         ...state,
-        total_Item: updatedCartIconItem
+        total_Price,
+        total_Item
       }
-
-    case "TOTAL_CART_PRICE":
-      let total_Price = state.cart_Items.reduce((total, nextItem) => {
-        return total + nextItem.price * nextItem.amount;
-      }, 0);
-
-      return {
-        ...state,
-        total_Price: total_Price
-      }
-
     default:
       return state;
   }
