@@ -1,4 +1,4 @@
 #Go to website
-https://main--lovely-cranachan-ab118f.netlify.app/
+[https://sumoecom.netlify.app/]
 
 #Progressing ...
