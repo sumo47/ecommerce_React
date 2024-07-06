@@ -20,7 +20,7 @@ This project is a fully functional e-commerce website built with React.js. It in
 - Firebase for Authentication and Database
 - Stripe for Payment Processing
 ## Getting Started
-Clone the repository: `[git clone https://github.com/yourusername/ecommerce-website.git](https://github.com/sumo47/ecommerce_React.git)`
+Clone the repository: `git clone https://github.com/sumo47/ecommerce_React.git`
 Install dependencies: `npm install`
 Run the development server: `npm start`
 ## Contribution
