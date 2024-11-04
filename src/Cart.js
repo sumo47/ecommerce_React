@@ -1,17 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useGlobalCartProvider } from './components/context/cartContext'
 import styled from 'styled-components'
 import CartItem from './components/CartItem'
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Button } from './styles/Button'
 import FormatPrice from './Helpers/FormatPrice';
-import {useAuth0} from '@auth0/auth0-react'
+import { useAuth0 } from '@auth0/auth0-react'
+import axios from 'axios';
 
 
 function Cart() {
-  const {isAuthenticated, user} = useAuth0()
+  const [paymentStatus, setPaymentStatus] = useState(null); // 'success', 'failure', or null
+  const [showModal, setShowModal] = useState(false); const navigate = useNavigate()
+  const { isAuthenticated, user } = useAuth0()
   const { cart_Items, clearCart, total_Price, shipping_Fee } = useGlobalCartProvider()
   // console.log(cart_Items)
+  const handlePayment = async () => {
+    try {
+      const response = await axios.post('https://luxuriant-alpine-vinyl.glitch.me/api/pay');
+      if (response.data.status === 'success') {
+        setPaymentStatus('success');
+        setShowModal(true);
+      }
+    } catch (error) {
+      setPaymentStatus('failure');
+      setShowModal(true);
+    }
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    if (paymentStatus === 'success') {
+      navigate('/Products');
+      clearCart()
+    }
+  };
+
   if (cart_Items.length === 0) {
     return (
       <EmptyDiv>
@@ -19,6 +43,7 @@ function Cart() {
       </EmptyDiv>
     )
   }
+
   return (
     <Wrapper>
       <div className="container">
@@ -27,7 +52,7 @@ function Cart() {
             <img src={user.picture} alt={user.name} />
             <h2 className='cart-user--name'>{user.name}</h2>
           </div>
-        )} 
+        )}
         <div className="cart_heading grid grid-five-column">
           <p>ITEM</p>
           <p className="cart-hide">PRICE</p>
@@ -67,6 +92,116 @@ function Cart() {
                 <FormatPrice price={shipping_Fee + total_Price} />
               </p>
             </div>
+            <div style={{ textAlign: 'center', margin: '2rem 0', padding: '1.5rem', backgroundColor: '#f9f9f9', borderRadius: '8px', boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)' }}>
+  <h2 style={{ color: '#333', marginBottom: '1rem', fontFamily: 'Arial, sans-serif' }}>Checkout</h2>
+  <button 
+    onClick={handlePayment} 
+    style={{
+      padding: '0.75rem 1.5rem',
+      fontSize: '1.2rem',
+      color: '#fff',
+      backgroundColor: '#28a745',
+      border: 'none',
+      borderRadius: '5px',
+      cursor: 'pointer',
+      transition: 'background-color 0.3s',
+    }}
+    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#218838'}
+    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#28a745'}
+  >
+    Confirm Payment
+  </button>
+
+  {/* Modal */}
+  {showModal && (
+    <div style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}>
+      <div style={{
+        backgroundColor: '#fff',
+        padding: '2rem',
+        borderRadius: '8px',
+        boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)',
+        textAlign: 'center',
+      }}>
+        {paymentStatus === 'success' ? (
+          <>
+            <h3 style={{ color: '#28a745' }}>Payment Successful!</h3>
+            <p>Your order has been placed successfully.</p>
+            <button 
+              onClick={closeModal} 
+              style={{
+                marginTop: '1rem',
+                padding: '0.5rem 1rem',
+                backgroundColor: '#007bff',
+                color: '#fff',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: 'pointer',
+                transition: 'background-color 0.3s',
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0056b3'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#007bff'}
+            >
+              Close
+            </button>
+          </>
+        ) : (
+          <>
+            <h3 style={{ color: '#dc3545' }}>Payment Failed</h3>
+            <p>Unfortunately, the payment did not go through.</p>
+            <button 
+              onClick={handlePayment} 
+              style={{
+                marginTop: '1rem',
+                padding: '0.5rem 1rem',
+                backgroundColor: '#ffc107',
+                color: '#000',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: 'pointer',
+                transition: 'background-color 0.3s',
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#e0a800'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#ffc107'}
+            >
+              Retry Payment
+            </button>
+            <button 
+              onClick={closeModal} 
+              style={{
+                marginLeft: '1rem',
+                marginTop: '1rem',
+                padding: '0.5rem 1rem',
+                backgroundColor: '#007bff',
+                color: '#fff',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: 'pointer',
+                transition: 'background-color 0.3s',
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0056b3'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#007bff'}
+            >
+              Close
+            </button>
+          </>
+        )}
+      </div>
+    </div>
+  )}
+</div>
+
+
+
           </div>
         </div>
       </div>
@@ -85,6 +220,7 @@ const EmptyDiv = styled.div`
     font-weight: 300;
   }
 `;
+
 
 const Wrapper = styled.section`
   padding: 9rem 0;

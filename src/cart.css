@@ -1,0 +1,68 @@
+/* Overlay to dim the background */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Make sure it's above other elements */
+  }
+  
+  /* Modal content styling */
+  .modal-content {
+    background: #ffffff; /* White background for contrast */
+    padding: 2rem;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  }
+  
+  /* Modal header text */
+  .modal-content h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333333; /* Dark text color */
+  }
+  
+  /* Modal body text */
+  .modal-content p {
+    font-size: 1.6rem;
+    color: #555555; /* Medium-dark gray */
+    margin-bottom: 2rem;
+  }
+  
+  /* Buttons within the modal */
+  .modal-content button {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #4CAF50; /* Success color for primary button */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 0.8rem;
+  }
+  
+  /* Styling for retry button */
+  .modal-content button.retry {
+    background-color: #e74c3c; /* Red for retry */
+  }
+  
+  /* Close button styling */
+  .modal-content button.close {
+    background-color: #555555; /* Dark gray for close */
+  }
+  
+  .modal-content button:hover {
+    opacity: 0.9; /* Slight opacity on hover for feedback */
+  }
+  
